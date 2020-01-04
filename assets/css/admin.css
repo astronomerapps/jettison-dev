@@ -1,0 +1,6 @@
+@import 'variables';
+
+h5 {
+  color: var(--color-red);
+
+}
