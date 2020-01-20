@@ -34,22 +34,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 /**
- * Current Plugin Version
- * Uses SemVer - https://semver.org
- *
- * Note: This is automatically updated on a release
- * @since 0.0.1
- * @var string JETTISON_VERISON
- */
-define( 'JETTISON_VERSION', '0.0.1' );
-
-/**
  * The name of the plugin used as a text-domain required by various WordPress functions
  *
  * @since 0.0.1
  * @var string JETTISON_NAME
  */
-define( 'JETTISON_NAME', 'jettison' );
+if ( ! defined( 'JETTISON_NAME' ) ) {
+  define( 'JETTISON_NAME', 'jettison' );
+}
 
 /**
  * Used through plugin for resolving paths
@@ -57,7 +49,9 @@ define( 'JETTISON_NAME', 'jettison' );
  * @since 0.0.1
  * @var string The root of the jettison plugin directory
  */
-define( 'JETTISON_ROOT', plugin_dir_path( __FILE__ ));
+if ( ! defined( 'JETTISON_ROOT' ) ) {
+  define( 'JETTISON_ROOT', plugin_dir_path( __FILE__ ));
+}
 
 /**
  * The relative path used for loading assets
@@ -65,33 +59,40 @@ define( 'JETTISON_ROOT', plugin_dir_path( __FILE__ ));
  * @since 0.0.1
  * @var string The asset root for the jettison plugin
  */
-define( 'JETTISON_ASSET_ROOT', '/wp-content/plugins/' . JETTISON_NAME . '/assets/');
-
+if ( ! defined( 'JETTISON_ASSET_ROOT' ) ) {
+  define( 'JETTISON_ASSET_ROOT', '/wp-content/plugins/' . JETTISON_NAME . '/assets/' );
+}
 
 /**
  * Pull in package.json for universal version numbers
  *
  * @since 0.0.1
  */
-$package = json_decode(file_get_contents(JETTISON_ROOT. 'package.json'), true);
+if ( ! defined( 'JETTISON_VERSION' ) ) {
+  $package = json_decode( file_get_contents( JETTISON_ROOT . 'package.json' ), true );
+}
 
 /**
- * The current version defined in package.json
+ * Current Plugin Version
+ * Uses SemVer - https://semver.org
  *
+ * Note: This is automatically updated on a release
  * @since 0.0.1
- * @access public
- * @var String $version The current version number
  */
-define( 'JETTISON_VERSION', $package['version'] );
+if ( ! defined( 'JETTISON_VERSION' ) ) {
+  define( 'JETTISON_VERSION', $package['version'] );
+}
 
 /**
  * The current api version defined in package.json
  *
  * @since 0.0.1
  * @access public
- * @var String $api_version The current api version used for the REST Routes Prefix
+ * @var string The current api version used for the REST Routes Prefix
  */
-define( 'JETTISON_API_VERSION', $package['apiVersion'] );
+if ( ! defined( 'JETTISON_API_VERSION' ) ) {
+  define( 'JETTISON_API_VERSION', $package['apiVersion'] );
+}
 
 /**
  * The code that will run when a user activates the plugin
