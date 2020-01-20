@@ -1,6 +1,7 @@
 {
   "name": "jettison",
   "version": "0.0.1",
+  "apiVersion": "v1",
   "description": "WordPress Syncing made easy",
   "main": "index.js",
   "scripts": {
@@ -27,6 +28,9 @@
     "postcss-nested": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "style-loader": "^1.0.0",
+    "ts-loader": "^6.2.1",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.7.5",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
