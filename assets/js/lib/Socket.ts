@@ -15,6 +15,7 @@ export class Socket {
 
   constructor() {
     this.connection = this.create();
+    console.log('WebSocket Enabled');
     this.connect();
   }
 

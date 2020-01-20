@@ -67,6 +67,32 @@ define( 'JETTISON_ROOT', plugin_dir_path( __FILE__ ));
  */
 define( 'JETTISON_ASSET_ROOT', '/wp-content/plugins/' . JETTISON_NAME . '/assets/');
 
+
+/**
+ * Pull in package.json for universal version numbers
+ *
+ * @since 0.0.1
+ */
+$package = json_decode(file_get_contents(JETTISON_ROOT. 'package.json'), true);
+
+/**
+ * The current version defined in package.json
+ *
+ * @since 0.0.1
+ * @access public
+ * @var String $version The current version number
+ */
+define( 'JETTISON_VERSION', $package['version'] );
+
+/**
+ * The current api version defined in package.json
+ *
+ * @since 0.0.1
+ * @access public
+ * @var String $api_version The current api version used for the REST Routes Prefix
+ */
+define( 'JETTISON_API_VERSION', $package['apiVersion'] );
+
 /**
  * The code that will run when a user activates the plugin
  * See /includes/bootstrap/class-jettison-activator.php for more info

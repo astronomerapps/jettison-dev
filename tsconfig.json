@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "baseUrl": "./assets",
-    "outDir": "assets/dist/",
+    "baseUrl": "assets",
+    "outDir": "assets/dist",
     "noImplicitAny": true,
     "sourceMap": true,
     "module": "es6",
@@ -9,6 +9,6 @@
     "allowJs": true
   },
   "include": [
-    "./assets/js/**/*"
+    "assets/js/**/*"
   ]
 }

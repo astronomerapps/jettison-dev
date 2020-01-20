@@ -30,14 +30,14 @@ if (!isDev) {
 } else {
   devPlugins.push(new BrowserSyncPlugin({
     files: [
+      'jettison.php',
+      'includes/*.php',
+      'languages/*.php',
+      'views/*.php',
       'assets/fonts/**/*',
       'assets/images/**/*',
       'assets/js/**/*',
       'assets/css/**/*',
-      'includes/**/*.php',
-      'views/**/*.php',
-      'languages/*.pot',
-      'jettison.php',
     ],
     reloadDelay: 0,
     notify: {
@@ -68,8 +68,11 @@ module.exports = {
   target: 'web',
   mode: process.env.NODE_ENV,
   stats: {
-    warnings: false,
+    // warnings: false,
   }, // Hide warnings
+  watchOptions: {
+    poll: 100
+  },
   output: {
     path: path.resolve(BASE_URL, 'dist'),
     filename: '[name].js',
@@ -98,7 +101,7 @@ module.exports = {
         loader: {
           loader: 'ts-loader',
           options: {
-            // configFile: path.resolve(__dirname, 'tsconfig.json')
+            // configFile: path.resolve(BASE_URL, 'tsconfig.json')
           }
         }
       },
@@ -153,14 +156,11 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new TsconfigPathsPlugin({
-      // configFile: path.resolve(__dirname, 'tsconfig.json')
-    }),
     /**
      * Ignore the empty js files that get generated
      * Will be fixed in webpack@5
      */
-    new IgnoreEmitPlugin(['admincss.js', 'publiccss.js']),
+    new IgnoreEmitPlugin(['jettison-admin-css.js', 'jettison-public-css.js']),
     ...devPlugins,
     ...prodPlugins,
     new webpack.ProvidePlugin({
@@ -170,6 +170,11 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.css', '.vue', '.tsx', '.ts'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        // configFile: path.resolve(BASE_URL, 'tsconfig.json')
+      }),
+    ]
   },
   optimization: {
     chunkIds: isDev ? 'named' : 'total-size',

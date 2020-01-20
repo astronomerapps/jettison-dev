@@ -8,7 +8,10 @@
     "dev": "NODE_ENV=development webpack --watch --hide-modules --colors",
     "build": "NODE_ENV=production webpack --display-entrypoints"
   },
-  "author": "",
+  "author": "AstronomerApps",
+  "repository": {
+    "url": "https://github.com/AstronomerApps/jettison"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.2",

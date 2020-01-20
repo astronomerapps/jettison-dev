@@ -29,12 +29,14 @@ class Jettison {
    * - Jettison_Loader - Responsible for hooking into WordPress
    * - Jettison_i18n - Handles internationalization
    * - Jettison_Auth - Handles authentication with Astronomer
+   * - Jettison_Socket - The WebSocket connector with the Frontend
    *
    * @since 0.0.1
    * @access private
    */
   private function load_dependencies() {
     require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-loader.php';
+    require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-socket.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-admin.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-i18n.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-notices.php';
@@ -56,10 +58,12 @@ class Jettison {
     // $this->loader->add_filter( 'wordpress_filter_name', $class_ref, 'function_name' )
 
     $plugin_admin = new Jettison_Admin();
+    $plugin_socket = new Jettison_Socket();
 
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
     $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'menu' );
+    $this->loader->add_action( 'rest_api_init', $plugin_socket, 'register' );
   }
 
   /**
