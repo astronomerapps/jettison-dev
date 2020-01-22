@@ -42,18 +42,7 @@ class Jettison_Admin {
 	}
 
 	public function menu() {
-		add_menu_page('Jettison', 'Jettison', 'manage_options', JETTISON_NAME, array( $this, 'home'), JETTISON_ASSET_ROOT . 'images/menu-icon.png');
-		add_options_page( 'Settings', 'Jettison', 'manage_options', JETTISON_NAME, array( $this, 'settings_page'));
-	}
-
-	public function home() {
-		echo '<h5>Hey</h5>';
-	}
-
-	public function settings_page() {
-		if ( !current_user_can( 'manage_options' ) )  {
-			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-		}
-		echo 'We did it champ.';
+		add_menu_page('Dashboard', 'Jettison', 'manage_options', JETTISON_NAME, array( 'Jettison_Views', 'show' ), JETTISON_ASSET_ROOT . 'images/menu-icon.png', 2 );
+		add_submenu_page( JETTISON_NAME, 'Settings', 'Settings', 'manage_options', JETTISON_NAME . '-settings', array( 'Jettison_Views', 'show' ) );
 	}
 }
