@@ -95,6 +95,17 @@ if ( ! defined( 'JETTISON_API_VERSION' ) ) {
 }
 
 /**
+ * The current api version defined in package.json
+ *
+ * @since 0.0.1
+ * @access public
+ * @var string The current api version used for the REST Routes Prefix
+ */
+if ( ! defined('JETTISON_DEV_MODE') ) {
+  define('JETTISON_DEV_MODE', false);
+}
+
+/**
  * The code that will run when a user activates the plugin
  * See /includes/bootstrap/class-jettison-activator.php for more info
  *
@@ -126,5 +137,6 @@ register_deactivation_hook( __FILE__, 'deactivate_jettison' );
  * @since 0.0.1
  */
 require JETTISON_ROOT . 'includes/class-jettison.php';
+global $jettison;
 $jettison = new Jettison();
 $jettison->run();

@@ -10,6 +10,8 @@ class Jettison {
    */
   public $loader;
 
+  public $logger;
+
   /**
    * Instantiates everything required to run the plugin
    *
@@ -53,12 +55,15 @@ class Jettison {
    */
   private function load_dependencies() {
     require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-loader.php';
+    require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-log.php';
+    require_once JETTISON_ROOT . 'includes/helpers/class-jettison-files.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-views.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-admin.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-i18n.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-notices.php';
 
     $this->loader = new Jettison_Loader();
+    $this->logger = new Jettison_Log();
   }
 
   /**

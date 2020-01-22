@@ -42,6 +42,8 @@ class Jettison_Admin {
 	}
 
 	public function menu() {
+		global $jettison;
+		$jettison->logger->debug( 'Testing' );
 		add_menu_page('Dashboard', 'Jettison', 'manage_options', JETTISON_NAME, array( 'Jettison_Views', 'show' ), JETTISON_ASSET_ROOT . 'images/menu-icon.png', 2 );
 		add_submenu_page( JETTISON_NAME, 'Settings', 'Settings', 'manage_options', JETTISON_NAME . '-settings', array( 'Jettison_Views', 'show' ) );
 	}
