@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const IgnoreEmitPlugin = require("ignore-emit-webpack-plugin");
@@ -11,6 +12,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const prodPlugins = [];
 const devPlugins = [];
 const cssPlugins = [];
+const BASE_URL = path.resolve(__dirname, 'assets');
 
 cssPlugins.push(require('postcss-easy-import')());
 cssPlugins.push(require('postcss-assets')({
@@ -28,15 +30,14 @@ if (!isDev) {
 } else {
   devPlugins.push(new BrowserSyncPlugin({
     files: [
-      'assets/*.php',
+      'jettison.php',
+      'includes/*.php',
+      'languages/*.php',
+      'views/*.php',
       'assets/fonts/**/*',
       'assets/images/**/*',
       'assets/js/**/*',
       'assets/css/**/*',
-      'includes/**/*.php',
-      'views/**/*.php',
-      'languages/*.pot',
-      'jettison.php',
     ],
     reloadDelay: 0,
     notify: {
@@ -58,32 +59,35 @@ if (!isDev) {
 
 module.exports = {
   entry: {
-    'jettison-admin-scripts': path.resolve(__dirname, 'assets/js/admin.js'),
-    'jettison-admin-styles': path.resolve(__dirname, 'assets/css/admin.css'),
-    'jettison-public-scripts': path.resolve(__dirname, 'assets/js/public.js'),
-    'jettison-public-styles': path.resolve(__dirname, 'assets/css/public.css'),
+    'jettison-admin-scripts': path.resolve(BASE_URL, 'js/admin.ts'),
+    'jettison-admin-styles': path.resolve(BASE_URL, 'css/admin.css'),
+    'jettison-public-scripts': path.resolve(BASE_URL, 'js/public.ts'),
+    'jettison-public-styles': path.resolve(BASE_URL, 'css/public.css'),
   },
   devtool: isDev ? 'inline-source-map' : false,
   target: 'web',
   mode: process.env.NODE_ENV,
   stats: {
-    warnings: false,
+    // warnings: false,
   }, // Hide warnings
+  watchOptions: {
+    poll: 100
+  },
   output: {
-    path: path.resolve(__dirname, 'assets/dist'),
+    path: path.resolve(BASE_URL, 'dist'),
     filename: '[name].js',
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
-        include: [path.resolve(__dirname, 'assets/js')],
+        include: [path.resolve(BASE_URL, 'js')],
         loader: 'vue-loader',
         options: {},
       },
       {
         test: /\.js$/,
-        include: [path.resolve(__dirname, 'assets/js')],
+        include: [path.resolve(BASE_URL, 'js')],
         use: {
           loader: 'babel-loader',
           options: {
@@ -92,8 +96,18 @@ module.exports = {
         },
       },
       {
+        test: /\.ts(x?)$/,
+        include: [path.resolve(BASE_URL, 'js')],
+        loader: {
+          loader: 'ts-loader',
+          options: {
+            // configFile: path.resolve(BASE_URL, 'tsconfig.json')
+          }
+        }
+      },
+      {
         test: /\.css$/,
-        include: [path.resolve(__dirname, 'assets/css')],
+        include: [path.resolve(BASE_URL, 'css')],
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -114,7 +128,7 @@ module.exports = {
       },
       {
         test: /\.woff|ttf|eot|svg$/,
-        include: [path.resolve(__dirname, 'assets/fonts')],
+        include: [path.resolve(BASE_URL, 'fonts')],
         use: [
           {
             loader: 'file-loader',
@@ -146,7 +160,7 @@ module.exports = {
      * Ignore the empty js files that get generated
      * Will be fixed in webpack@5
      */
-    new IgnoreEmitPlugin(['admincss.js', 'publiccss.js']),
+    new IgnoreEmitPlugin(['jettison-admin-css.js', 'jettison-public-css.js']),
     ...devPlugins,
     ...prodPlugins,
     new webpack.ProvidePlugin({
@@ -155,7 +169,12 @@ module.exports = {
     new VueLoaderPlugin(),
   ],
   resolve: {
-    extensions: ['.js', '.css', '.vue'],
+    extensions: ['.js', '.css', '.vue', '.tsx', '.ts'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        // configFile: path.resolve(BASE_URL, 'tsconfig.json')
+      }),
+    ]
   },
   optimization: {
     chunkIds: isDev ? 'named' : 'total-size',

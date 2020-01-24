@@ -7,7 +7,6 @@
  * @subpackage Jettison/includes/bootstrap
  */
 class Jettison_Deactivator {
-  public function deactivate() {
-    add_action( 'admin_notices', array( 'Jettison_Notices', 'deactivate_notice__success' ));
+  public static function deactivate() {
   }
 }

@@ -1,0 +1,15 @@
+Hook,Reference,Needed?,Description
+add_attachment,https://developer.wordpress.org/reference/hooks/add_attachment/,,Fires once an attachment has been added.
+add_option,https://developer.wordpress.org/reference/hooks/add_option/,,Fires before an option is added.
+added_existing_user,https://developer.wordpress.org/reference/hooks/added_existing_user/,,Fires immediately after an existing user is added to a site.
+added_option,https://developer.wordpress.org/reference/hooks/added_option/,,Fires after an option has been added.
+added_term_relationship,https://developer.wordpress.org/reference/hooks/added_term_relationship/,,Fires immediately after an object-term relationship is added.
+add_admin_bar_menus,https://developer.wordpress.org/reference/hooks/add_admin_bar_menus/,,Fires after menus are added to the menu bar.
+add_link,https://developer.wordpress.org/reference/hooks/add_link/,,Fires after a link was added to the database.
+add_user_role,https://developer.wordpress.org/reference/hooks/add_user_role/,,Fires immediately after the user has been given a new role.
+after_signup_user,https://developer.wordpress.org/reference/hooks/after_signup_user/,,Fires after a user’s signup information has been written to the database.
+comment_post,https://developer.wordpress.org/reference/hooks/comment_post/,,Fires immediately after a comment is inserted into the database.
+created_term,https://developer.wordpress.org/reference/hooks/created_term/,,"Fires after a new term is created, and after the term cache has been cleaned."
+create_term,https://developer.wordpress.org/reference/hooks/create_term/,,"Fires immediately after a new term is created, before the term cache is cleaned."
+edit_user_created_user,https://developer.wordpress.org/reference/hooks/edit_user_created_user/,,Fires after a new user has been created.
+generate_rewrite_rules,https://developer.wordpress.org/reference/hooks/generate_rewrite_rules/,,Fires after the rewrite rules are generated.
