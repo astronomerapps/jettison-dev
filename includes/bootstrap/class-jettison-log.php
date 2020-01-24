@@ -1,6 +1,9 @@
 <?php
+namespace Jettison;
 
-class Jettison_Log {
+use \Datetime;
+
+class Log {
   private static $directory_name = 'logs';
   private static $log_name_prefix = 'log_';
   private $output_directory;
@@ -27,16 +30,16 @@ class Jettison_Log {
   }
 
   private static function setup_csv_header( $file ) {
-    Jettison_Files::write( $file, "type,timestamp,message,data\n" );
+    Helpers\Files::write( $file, "type,timestamp,message,data\n" );
   }
 
-  private static function create_message( $message, $type, $data = [] ) {
+  private static function create_message( $message, $type, $data ) {
     $timestamp = new DateTime();
-    return $type . ',' . $timestamp->format( 'Y-m-d 00:00:00' ) . ',' . $message . ',' . json_encode( $data ) . "\n";
+    return $type . ',' . $timestamp->format( 'Y-m-d h:m:s' ) . ',' . $message . ',' . json_encode($data) . "\n";
   }
 
-  private function log( $message, $type, $data = [] ) {
-    Jettison_Files::write( $this->output_file, self::create_message( $message, $type, $data ) );
+  private function log( $message, $type, $data ) {
+    Helpers\Files::write( $this->output_file, self::create_message( $message, $type, $data ) );
   }
 
   public function __construct( $write_to_file = true ) {
@@ -47,8 +50,15 @@ class Jettison_Log {
     }
   }
 
+  public function info( $message, $data=[] ) {
+    $this->log( $message, 'INFO', $data );
+  }
+
   public function debug( $message, $data=[] ) {
     $this->log( $message, 'DEBUG', $data );
   }
 
+  public function error( $message, $data=[] ) {
+    $this->log( $message, 'ERROR', $data );
+  }
 }

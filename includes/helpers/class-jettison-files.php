@@ -5,7 +5,8 @@
  * @since 0.0.1
  * @access public
  */
-class Jettison_Files {
+namespace Jettison\Helpers;
+class Files {
   /**
    * Retrieves a list of files from the passed in path.
    * By default this will recursively go through all files
@@ -15,9 +16,7 @@ class Jettison_Files {
    * @return array - An array of paths to files
    */
   public static function get( $directory_path, $recurse=true ) {
-    if ( $handle = opendir( $directory_path ) ) {
-
-    }
+    return array_diff( scandir( $directory_path ), array( '..', '.') );
   }
 
   public static function write( $path_to_file, $data, $mode = "a+" ) {

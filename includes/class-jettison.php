@@ -63,7 +63,13 @@ class Jettison {
     require_once JETTISON_ROOT . 'includes/class-jettison-notices.php';
 
     $this->loader = new Jettison_Loader();
-    $this->logger = new Jettison_Log();
+    $this->logger = new Jettison\Log();
+
+    if (defined('JETTISON_DEV_MODE') && JETTISON_DEV_MODE) {
+      require_once JETTISON_ROOT . 'includes/hooks/class-jettison-hooks.php';
+      $hook_testing = new Jettison\Hooks();
+      $hook_testing->setup( $this->loader );
+    }
   }
 
   /**
