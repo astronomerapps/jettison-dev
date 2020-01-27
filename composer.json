@@ -1,0 +1,16 @@
+{
+    "name": "astronomerapps/jettison",
+    "description": "TBD",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    },
+    "license": "MIT",
+    "require": {},
+    "config": {
+        "platform": {
+            "php": "7.4",
+            "ext-something": "1"
+        }
+    }
+}
