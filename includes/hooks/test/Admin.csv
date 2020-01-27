@@ -1,4 +1,0 @@
-Hook,Reference,Needed?,Description
-debug_information,https://developer.wordpress.org/reference/hooks/debug_information/,,
-deprecated_constructor_run,https://developer.wordpress.org/reference/hooks/deprecated_constructor_run/,,
-determine_current_user,https://developer.wordpress.org/reference/hooks/determine_current_user/,,

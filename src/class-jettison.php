@@ -57,10 +57,12 @@ class Jettison {
     require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-loader.php';
     require_once JETTISON_ROOT . 'includes/bootstrap/class-jettison-log.php';
     require_once JETTISON_ROOT . 'includes/helpers/class-jettison-files.php';
+    require_once JETTISON_ROOT . 'includes/helpers/class-jettison-strings.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-views.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-admin.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-i18n.php';
     require_once JETTISON_ROOT . 'includes/class-jettison-notices.php';
+    require_once JETTISON_ROOT . 'includes/clients/class-jettison-http.php';
 
     $this->loader = new Jettison_Loader();
     $this->logger = new Jettison\Log();
