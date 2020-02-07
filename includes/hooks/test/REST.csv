@@ -1,9 +1,0 @@
-Hook,Reference,Needed?,Description
-rest_insert_attachment,https://developer.wordpress.org/reference/hooks/rest_insert_attachment/,,
-rest_insert_comment,https://developer.wordpress.org/reference/hooks/rest_insert_comment/,,
-rest_insert_user,https://developer.wordpress.org/reference/hooks/rest_insert_user/,,
-rest_delete_comment,https://developer.wordpress.org/reference/hooks/rest_delete_comment/,,
-rest_delete_revision,https://developer.wordpress.org/reference/hooks/rest_delete_revision/,,
-rest_delete_user,https://developer.wordpress.org/reference/hooks/rest_delete_user/,,
-http_api_curl,https://developer.wordpress.org/reference/hooks/http_api_curl/,,
-http_api_debug,https://developer.wordpress.org/reference/hooks/http_api_debug/,,

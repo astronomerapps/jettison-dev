@@ -1,1 +1,1 @@
-<?php // Silence is golden
+<?php // "An army of two..." - Father Valignano
