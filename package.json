@@ -20,7 +20,7 @@
     "file-loader": "^1.1.11",
     "ignore-emit-webpack-plugin": "^2.0.2",
     "mini-css-extract-plugin": "^0.8.0",
-    "postcss": "^7.0.21",
+    "postcss": "^8.2.10",
     "postcss-assets": "^5.0.0",
     "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^3.0.0",
